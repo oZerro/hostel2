@@ -1,0 +1,116 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Комнаты
+{% endblock %}
+
+{% load static %}
+
+
+
+
+{% block content %}
+<div class="payments2">
+        <h1>Комнаты</h1>
+
+    <div class="pagin">
+            <div class="but5">
+                <div class="append_but" class="append_spend_admin" onclick="add_room()">Добавить комнату</div>
+            </div>
+
+            <div class="kol-vo">
+                <h3>Всего мест</h3>
+                <span>{{vsego_mest}}</span>
+            </div>
+
+            <nav class="num_page">
+                <ul>
+                    {% for p in page_obj.paginator.page_range%}
+                        <li>
+                            <a href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+        </div>
+
+        <div class="payments">
+
+                <ul class="stolb_payments">
+                    <li>
+                        <h5>Номер</h5>
+                    </li>
+                    <li>
+                        <h5>Цена</h5>
+                    </li>
+                    <li>
+                        <h5>Кол-во. мест</h5>
+                    </li>
+
+                </ul>
+                {% for room in rooms %}
+                    <div class="pay">
+                        <div class="date_1 text_1">
+                           № {{ room.number }}
+                        </div>
+
+                        <div class="user_1 text_1">
+                            {{ room.price_for_period }} p
+                        </div>
+
+                        <div class="summa text_1">
+                            {{ room.number_of_beds }} места
+                            <a href="{% url 'update_rooms' room.id %}" >
+                                <img src="{% static 'otchet/images/pen.png' %}" alt="">
+                            </a>
+
+                            <a href="{% url 'delete_rooms' room.id %}" class="delete_knop">
+                                <img src="{% static 'otchet/images/close.png' %}" alt="">
+                            </a>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+
+
+    <div class="pagin">
+            <div class="but5">
+                <div class="append_but" class="append_spend_admin" onclick="add_room()">Добавить комнату</div>
+            </div>
+
+            <nav class="num_page">
+                <ul>
+                    {% for p in page_obj.paginator.page_range%}
+                        <li>
+                            <a href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+        </div>
+
+
+    <div class="add_pep_form" id="add_room_form">
+                <div class="head_form">
+                    <div class="close" id="close_room_form" onclick="close_room()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form8.as_p }}
+                    <input type="text" value="AddRoomForm" name="name_form" hidden="hidden">
+                    <button type="submit">Добавить комнату</button>
+                </form>
+
+            </div>
+
+</div>
+{% endblock %}

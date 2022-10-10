@@ -1,0 +1,22 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Редактирование комнаты
+{% endblock %}
+
+{% load static %}
+
+
+
+{% block content %}
+<div class="payments2">
+    <form action="{% url 'test' %}" method="post">
+      {% csrf_token %}
+      {{ form_test.as_p }}
+        <button type="submit">Подписаться</button>
+    </form>
+</div>
+
+{% endblock %}

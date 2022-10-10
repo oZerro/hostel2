@@ -1,0 +1,32 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Редактирование комнаты
+{% endblock %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+            <div class="add_pep_form add_pep_form_update" id="add_room">
+                <div class="head_form">
+                    <a href="{% url 'rooms' %}" class="close" id="close_room_form" onclick="close_room()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </a>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form8.as_p }}
+                    <input type="text" value="AddRoomForm" name="name_form" hidden="hidden">
+                    <button type="submit">Редактировать комнату</button>
+                </form>
+
+            </div>
+
+{% endblock %}
