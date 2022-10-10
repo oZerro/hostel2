@@ -146,7 +146,7 @@ EMAIL_HOST_PASSWORD = "zdd7JrCyPiCtyWPCnPM8"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
-#qwerty123321!
+
 
 # Redis related settings
 REDIS_HOST = '0.0.0.0'
